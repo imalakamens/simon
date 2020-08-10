@@ -9,7 +9,7 @@ body {
     
 }
 
-#header {
+.header {
     background-color: #009473;
     color: floralwhite;
     text-align: center;
@@ -21,4 +21,37 @@ body {
     font-size: xx-large;
     border-style: solid;
     border-color: #5c4031;
+}
+.board {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto;
+}
+#green_button { /* top left */
+    
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid darkgreen;
+    border-left: 100px solid transparent;
+}
+#red_button { /* top right */
+    
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid darkred;
+    border-right: 100px solid transparent;
+}
+#yellow_button { /* bottom left */
+
+    width: 0;
+    height: 0;
+    border-top: 100px solid goldenrod;
+    border-left: 100px solid transparent;
+}
+#blue_button { /* bottom right */
+  
+    width: 0;
+    height: 0;
+    border-top: 100px solid darkblue;
+    border-right: 100px solid transparent;
 }
