@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Baloo Tamma 2', cursive;
+}
+  
+body {
+    margin: 0;
+    font-family: Helvetica;
+    
+}
+
+#header {
+    background-color: #009473;
+    color: floralwhite;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50%;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: xx-large;
+    border-style: solid;
+    border-color: #5c4031;
+}
