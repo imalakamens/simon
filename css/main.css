@@ -12,6 +12,7 @@ body {
 .header {
     background-color: #009473;
     color: floralwhite;
+    align-content: center;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -31,27 +32,27 @@ body {
     
     width: 0;
     height: 0;
-    border-bottom: 100px solid darkgreen;
-    border-left: 100px solid transparent;
+    border-bottom: 200px solid darkgreen;
+    border-left: 200px solid transparent;
 }
 #red_button { /* top right */
     
     width: 0;
     height: 0;
-    border-bottom: 100px solid darkred;
-    border-right: 100px solid transparent;
+    border-bottom: 200px solid darkred;
+    border-right: 200px solid transparent;
 }
 #yellow_button { /* bottom left */
 
     width: 0;
     height: 0;
-    border-top: 100px solid goldenrod;
-    border-left: 100px solid transparent;
+    border-top: 200px solid goldenrod;
+    border-left: 200px solid transparent;
 }
 #blue_button { /* bottom right */
   
     width: 0;
     height: 0;
-    border-top: 100px solid darkblue;
-    border-right: 100px solid transparent;
+    border-top: 200px solid darkblue;
+    border-right: 200px solid transparent;
 }
