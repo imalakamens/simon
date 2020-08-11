@@ -35,27 +35,37 @@ body {
     border-bottom: 200px solid darkgreen;
     border-left: 200px solid transparent;
 }
+#light-green {
+    border-bottom:200px solid rgb(0, 183, 0);
+    
+}
 .red_button { /* top right */
     
     width: 0;
     height: 0;
     border-bottom: 200px solid darkred;
-    border-top: ligh;
     border-right: 200px solid transparent;
+}
+#light-red {
+    border-bottom: 200px solid rgb(226, 0, 0);
 }
 .yellow_button { /* bottom left */
 
     width: 0;
     height: 0;
-    border-top: 200px solid goldenrod;
-    /* border-top: lightgoldenrodyellow; this color when lit */
+    border-top: 200px solid rgb(194, 155, 54);
     border-left: 200px solid transparent;
+}
+#light-yellow {
+    border-top: 200px solid rgb(255, 240, 157);
 }
 .blue_button { /* bottom right */
   
     width: 0;
     height: 0;
     border-top: 200px solid darkblue;
-    /* border-top: lightblue; this color when lit */
     border-right: 200px solid transparent;
+}
+#light-blue {
+    border-top: 200px solid rgb(0, 0, 240);
 }
