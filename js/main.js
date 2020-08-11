@@ -12,7 +12,7 @@ const sequences = {
     playerSequence: [],
     computerSequence: [],
 };
-let turn, ignoreClicks; 
+let gameOver, ignoreClicks; 
 // at some point maybe add a score, = playerSequence.length
 
 /*----- cached element references -----*/
@@ -40,16 +40,24 @@ function randomNum() {
 
 function generateRandomSequence() {
    sequences.computerSequence.push(randomNum());
-
+   
 };
 
 function handleClick(evt) {
-    if(gameOver || ignoreClick) {
-        return;
-    // } else 
-// if you click the button, add a number to array
-}
+    if(gameOver || ignoreClicks) {
+        return; 
+    } else if (evt.target === buttonEls.greenButton) {
+        return sequences.playerSequence.push(0);
+    } else if (evt.target === buttonEls.redButton) {
+        return sequences.playerSequence.push(1);
+    } else if (evt.target === buttonEls.yellowButton) {
+        return sequences.playerSequence.push(2);
+    } else if (evt.target === buttonEls.blueButton) {
+        return sequences.playerSequence.push(3);
+    };
+
 };
+
 
 function init() {
     generateRandomSequence();

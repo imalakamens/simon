@@ -40,6 +40,7 @@ body {
     width: 0;
     height: 0;
     border-bottom: 200px solid darkred;
+    border-top: ligh;
     border-right: 200px solid transparent;
 }
 #yellow_button { /* bottom left */
@@ -47,6 +48,7 @@ body {
     width: 0;
     height: 0;
     border-top: 200px solid goldenrod;
+    /* border-top: lightgoldenrodyellow; this color when lit */
     border-left: 200px solid transparent;
 }
 #blue_button { /* bottom right */
@@ -54,5 +56,6 @@ body {
     width: 0;
     height: 0;
     border-top: 200px solid darkblue;
+    /* border-top: lightblue; this color when lit */
     border-right: 200px solid transparent;
 }
