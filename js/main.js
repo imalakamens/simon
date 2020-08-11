@@ -17,11 +17,11 @@ let gameOver, ignoreClicks;
 
 /*----- cached element references -----*/
 const buttonEls = {
-    greenButton: document.getElementById('green_button'),
-    redButton: document.getElementById('red_button'),
-    yellowButton: document.getElementById('yellow_button'),
-    blueButton: document.getElementById('blue_button'),
-    startButton: document.getElementById('start_button') // I maybe don't need this buttpn; am I gonna be accessing it on the regular?
+    greenButton: document.querySelector('.green_button'),
+    redButton: document.querySelector('.red_button'),
+    yellowButton: document.querySelector('.yellow_button'),
+    blueButton: document.querySelector('.blue_button'),
+    startButton: document.querySelector('.start_button') // I maybe don't need this buttpn; am I gonna be accessing it on the regular?
     
 };
 
