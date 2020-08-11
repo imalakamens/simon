@@ -30,28 +30,28 @@ body {
     grid-template-columns: auto auto;
 }
 
-.green_button { /* top left */ 
+#green_button { /* top left */ 
     width: 0;
     height: 0;
     border-bottom:200px solid rgba(0, 183, 0, 0.3);
     border-left: 200px solid transparent;
 }
 
-.red_button { /* top right */
+#red_button { /* top right */
     width: 0;
     height: 0;
     border-bottom: 200px solid rgba(226, 0, 0, 0.4);
     border-right: 200px solid transparent;
 }
 
-.yellow_button { /* bottom left */
+#yellow_button { /* bottom left */
     width: 0;
     height: 0;
     border-top: 200px solid rgba(255, 240, 157, 0.5);
     border-left: 200px solid transparent;
 }
 
-.blue_button { /* bottom right */ 
+#blue_button { /* bottom right */ 
     width: 0;
     height: 0;
     border-top: 200px solid rgb(80, 80, 255, 0.5);

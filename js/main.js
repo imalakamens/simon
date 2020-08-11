@@ -9,19 +9,19 @@ const buttons = {
 
 /*----- app's state (variables) -----*/
 const sequences = {
-    playerSequence: null,
-    computerSequence: null,
+    playerSequence: [],
+    computerSequence: [],
 };
 let gameOver, ignoreClicks; 
 // at some point maybe add a score, = playerSequence.length
 
 /*----- cached element references -----*/
 const buttonEls = {
-    greenButton: document.querySelector('.green_button'),
-    redButton: document.querySelector('.red_button'),
-    yellowButton: document.querySelector('.yellow_button'),
-    blueButton: document.querySelector('.blue_button'),
-    startButton: document.querySelector('.start_button') // I maybe don't need this buttpn; am I gonna be accessing it on the regular?
+    greenButton: document.getElementById('green_button'),
+    redButton: document.getElementById('red_button'),
+    yellowButton: document.getElementById('yellow_button'),
+    blueButton: document.getElementById('blue_button'),
+    startButton: document.getElementById('start_button') // I maybe don't need this buttpn; am I gonna be accessing it on the regular?
     
 };
 
@@ -47,6 +47,7 @@ function handleClick(evt) {
     if(gameOver || ignoreClicks) {
         return; 
     } else if (evt.target === buttonEls.greenButton) {
+        buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)'; //this works to change color of button!
         return sequences.playerSequence.push(0);
     } else if (evt.target === buttonEls.redButton) {
         return sequences.playerSequence.push(1);
@@ -61,6 +62,7 @@ function handleClick(evt) {
 
 function init() {
     ignoreClicks = true;
+    
     sequences.playerSequence = [];
     sequences.computerSequence = [];
     generateRandomSequence();
