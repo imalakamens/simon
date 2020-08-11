@@ -9,8 +9,8 @@ const buttons = {
 
 /*----- app's state (variables) -----*/
 const sequences = {
-    playerSequence: [],
-    computerSequence: [],
+    playerSequence: null,
+    computerSequence: null,
 };
 let gameOver, ignoreClicks; 
 // at some point maybe add a score, = playerSequence.length
@@ -60,9 +60,13 @@ function handleClick(evt) {
 
 
 function init() {
+    ignoreClicks = true;
+    sequences.playerSequence = [];
+    sequences.computerSequence = [];
     generateRandomSequence();
 };
 
 function render() {
     console.log(sequences.computerSequence)[i];
 };
+/* sketch out function order here */
