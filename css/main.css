@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Baloo Tamma 2', cursive;
+    color: floralwhite;
 }
   
 body {
@@ -10,11 +11,11 @@ body {
 }
 
 .header {
+    display: grid;
     background-color: #009473;
     color: floralwhite;
     align-content: center;
     text-align: center;
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 50%;
     grid-row-start: 1;
@@ -57,4 +58,21 @@ body {
     height: 0;
     border-top: 200px solid rgb(80, 80, 255, 0.5);
     border-right: 200px solid transparent;
+}
+
+#message {
+    background-color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+#start_button {
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+.score {
+    display: grid;
+    justify-items: center;
+    background-color: #009473;
 }

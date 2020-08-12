@@ -23,7 +23,7 @@ const buttonEls = {
 
 /*----- event listeners -----*/
 document.querySelector('.board').addEventListener('click', handleClick);
-
+document.getElementById('start_button').addEventListener('click', init);
 /*----- functions -----*/
 
 function randomNum() {
@@ -75,7 +75,7 @@ function playGame() {
 }
 
 function isGameOver() {
-    console.log('hgame overrrr')
+    console.log('this is game over running')
     if(sequences.playerSequence[counter] == sequences.randomSequence[counter]) {
         gameOver = false;
         counter ++
@@ -103,3 +103,4 @@ function turnLightOn(color) {
         };      
     };
 };
+
