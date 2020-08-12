@@ -1,18 +1,14 @@
 // IN RESPONSE TO USER INTERACTION: UPDATE STATE, THEN CALL RENDER
 /*----- constants -----*/
-const buttons = { // do i need this?
-    green: 0,
-    red: 1,
-    yellow: 2,
-    blue: 3,
-};
+
 const sequences = {
     playerSequence: [],
     randomSequence: [],
 };
 
 /*----- app's state (variables) -----*/
-let gameOver, ignoreClicks, interval; 
+let counter = 0;
+let gameOver, ignoreClicks; 
 // at some point maybe add a score, = playerSequence.length
 
 /*----- cached element references -----*/
@@ -31,12 +27,14 @@ document.querySelector('.board').addEventListener('click', handleClick);
 /*----- functions -----*/
 
 function randomNum() {
- return Math.floor(Math.random()* 4);
+    return Math.floor(Math.random()* 4);
 };
 
 function generateSequence() {
-   sequences.randomSequence.push(randomNum());
-   
+    ignoreClicks = false;
+    sequences.randomSequence.push(randomNum());
+    sequences.playerSequence = [];
+    counter = 0;
 };
 
 function handleClick(evt) {
@@ -77,10 +75,20 @@ function playGame() {
 }
 
 function isGameOver() {
-    if(sequences.playerSequence !== sequences.randomSequence) return gameOver = true;
-    else {
-        console.log('game is not over, now what do we do?')
+    console.log('hgame overrrr')
+    if(sequences.playerSequence[counter] == sequences.randomSequence[counter]) {
+        gameOver = false;
+        counter ++
+    } else {
+        gameOver = true;
     }
+    if (counter==sequences.randomSequence.length) {
+        generateSequence();
+    }
+console.log(sequences)
+console.log(gameOver)
+    // if(sequences.playerSequence.toString() !== sequences.randomSequence.toString()) return gameOver = true;
+   return gameOver;
 };
 
 function render() {

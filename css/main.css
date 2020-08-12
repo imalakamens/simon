@@ -28,6 +28,7 @@ body {
     display: grid;
     justify-content: center;
     grid-template-columns: auto auto;
+    background-color: black;
 }
 
 #green_button { /* top left */ 
