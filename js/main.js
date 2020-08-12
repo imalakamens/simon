@@ -6,6 +6,13 @@ const sequences = {
     randomSequence: [],
 };
 
+const boardLights = {
+    g: 0,
+    r: 1,
+    y: 2,
+    b: 3
+}
+
 const lightUp = {
     green: () => {
         turnLightsOff();
@@ -69,11 +76,13 @@ function init() {
     sequences.playerSequence = [];
     sequences.randomSequence = [];
     playGame();
+    
 };
 
 function playGame() {
     generateSequence();
     ignoreClicks = false;
+    console.log(sequences)
 }
 
 function handleClick(evt) {
@@ -97,9 +106,6 @@ function handleClick(evt) {
 
 };
 
-
-
-
 function isGameOver() {
     console.log('this is game over running')
     if(sequences.playerSequence[counter] == sequences.randomSequence[counter]) {
@@ -117,25 +123,13 @@ console.log(gameOver)
 };
 
 function renderSeq() {
-    let lightObject = {
-        // 0: buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)',
-        // 1: buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)',
-        // 2: buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)',
-        // 3: buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, 1)'
-    }
-    sequences.randomSequence.forEach(() => console.log('renderSeq loop'));
-};
+
+}
 /* sketch out function order here */
 
-
-// function lightUpGreen() {
-//     buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
-// };
 function turnLightsOff(){
     buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 0.3)';
     buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, .4)';
     buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, .5)';
     buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, .5)';
 };
-// lightUpGreen();
-// setTimeout(turnLightsOff, 300);
