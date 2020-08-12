@@ -35,7 +35,20 @@ function generateSequence() {
     sequences.randomSequence.push(randomNum());
     sequences.playerSequence = [];
     counter = 0;
+    setTimeout(renderSeq, 1000)
 };
+function init() {
+    gameOver = false;
+    ignoreClicks = true;
+    sequences.playerSequence = [];
+    sequences.randomSequence = [];
+    playGame();
+};
+
+function playGame() {
+    generateSequence();
+    ignoreClicks = false;
+}
 
 function handleClick(evt) {
     if(gameOver || ignoreClicks) {
@@ -59,20 +72,7 @@ function handleClick(evt) {
 };
 
 
-function init() {
-    gameOver = false;
-    ignoreClicks = true;
-    sequences.playerSequence = [];
-    sequences.randomSequence = [];
-    render();
-    playGame();
-};
 
-function playGame() {
-    generateSequence();
-    //then probably wait some amount of time
-    ignoreClicks = false;
-}
 
 function isGameOver() {
     console.log('this is game over running')
@@ -82,7 +82,7 @@ function isGameOver() {
     } else {
         gameOver = true;
     }
-    if (counter==sequences.randomSequence.length) {
+    if(counter==sequences.randomSequence.length) {
         generateSequence();
     }
 console.log(sequences)
@@ -91,16 +91,19 @@ console.log(gameOver)
    return gameOver;
 };
 
-function render() {
-console.log('render')
+function renderSeq() {
+    let lightObject = {
+        // 0: buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)',
+        // 1: buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)',
+        // 2: buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)',
+        // 3: buttonEls.blueButton.style.borderTopColor=('80, 80, 255, 1')
+    }
+    sequences.randomSequence.forEach(() => console.log(sequences));
 };
 /* sketch out function order here */
 
-function turnLightOn(color) {
-    if (color === 0) {
-        for(let i=0; i<1000000; i++) {
-            buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
-        };      
-    };
+function turnLightOn() {
+    
 };
+
 
