@@ -6,6 +6,28 @@ const sequences = {
     randomSequence: [],
 };
 
+const lightUp = {
+    green: () => {
+        turnLightsOff();
+        buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
+        setTimeout(turnLightsOff, 300);
+    },
+    red: () => {
+        turnLightsOff();
+        buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)';
+        setTimeout(turnLightsOff, 300);
+    },
+    yellow: () => {
+        turnLightsOff();
+        buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)';
+        setTimeout(turnLightsOff, 300);
+    },
+    blue: () => {
+        turnLightsOff();
+        buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, 1)';
+        setTimeout(turnLightsOff, 300);
+    }
+};
 /*----- app's state (variables) -----*/
 let counter = 0;
 let gameOver, ignoreClicks; 
@@ -23,6 +45,10 @@ const buttonEls = {
 
 /*----- event listeners -----*/
 document.querySelector('.board').addEventListener('click', handleClick);
+document.getElementById('green_button').addEventListener('click', lightUp.green);
+document.getElementById('red_button').addEventListener('click', lightUp.red);
+document.getElementById('yellow_button').addEventListener('click', lightUp.yellow);
+document.getElementById('blue_button').addEventListener('click', lightUp.blue);
 document.getElementById('start_button').addEventListener('click', init);
 /*----- functions -----*/
 
@@ -85,7 +111,6 @@ function isGameOver() {
     if(counter==sequences.randomSequence.length) {
         generateSequence();
     }
-console.log(sequences)
 console.log(gameOver)
     // if(sequences.playerSequence.toString() !== sequences.randomSequence.toString()) return gameOver = true;
    return gameOver;
@@ -96,14 +121,21 @@ function renderSeq() {
         // 0: buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)',
         // 1: buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)',
         // 2: buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)',
-        // 3: buttonEls.blueButton.style.borderTopColor=('80, 80, 255, 1')
+        // 3: buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, 1)'
     }
-    sequences.randomSequence.forEach(() => console.log(sequences));
+    sequences.randomSequence.forEach(() => console.log('renderSeq loop'));
 };
 /* sketch out function order here */
 
-function turnLightOn() {
-    
+
+// function lightUpGreen() {
+//     buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
+// };
+function turnLightsOff(){
+    buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 0.3)';
+    buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, .4)';
+    buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, .5)';
+    buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, .5)';
 };
-
-
+// lightUpGreen();
+// setTimeout(turnLightsOff, 300);
