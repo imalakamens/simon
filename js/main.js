@@ -89,6 +89,8 @@ function handleClick(evt) {
     if(gameOver || ignoreClicks) {
         return; 
     } else if (evt.target === buttonEls.greenButton) {
+        // buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
+          //this works to change color of button!
          sequences.playerSequence.push(0);
          isGameOver();
     } else if (evt.target === buttonEls.redButton) {
@@ -122,8 +124,10 @@ console.log(gameOver)
 
 function renderSeq() {
     let lightShow =sequences.randomSequence;
-    console.log('is this lightshow?', lightShow)
-    if (lightShow.[index] == 0) lightUp.green;
+    console.log('is this lightshow?',lightShow)
+//     for(let i=0; i<=lightShow.length; i++ ){
+//         setInterval(() => lightUp.green, 2000*i )
+//     }
 };
 /* sketch out function order here */
 
