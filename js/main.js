@@ -1,4 +1,3 @@
-// IN RESPONSE TO USER INTERACTION: UPDATE STATE, THEN CALL RENDER
 /*----- constants -----*/
 
 const sequences = {
@@ -7,28 +6,40 @@ const sequences = {
 };
 
 const boardLights = {
-    g: 0,
-    r: 1,
-    y: 2,
-    b: 3
+    g: 1,
+    r: 2,
+    y: 3,
+    b: 4
 }
 
 const lightUp = {
     green: () => {
         turnLightsOff();
         buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
+        setTimeout(() => {
+            turnLightsOff();
+        }, 500);
     },
     red: () => {
         turnLightsOff();
         buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)';
+        setTimeout(() => {
+            turnLightsOff();
+        }, 500);
     },
     yellow: () => {
         turnLightsOff();
         buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)';
+        setTimeout(() => {
+            turnLightsOff();
+        }, 500);
     },
     blue: () => {
         turnLightsOff();
         buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, 1)';
+        setTimeout(() => {
+            turnLightsOff();
+        }, 500);
     }
 };
 /*----- app's state (variables) -----*/
@@ -67,7 +78,7 @@ function timer(cb) {
 }
 
 function randomNum() {
-    return Math.floor(Math.random()* 4);
+    return Math.floor(Math.random()* 4) + 1;
 };
 
 function generateSequence() {
@@ -75,9 +86,7 @@ function generateSequence() {
     sequences.randomSequence.push(randomNum());
     sequences.playerSequence = [];
     counter = 0;
-    // lightShow = undefined;
-    setTimeout(renderSeq, 200);
-    clearInterval(renderSeq);
+    renderSeq();
 };
 
 function init() {
@@ -102,16 +111,16 @@ function handleClick(evt) {
     if(gameOver || ignoreClicks) {
         return; 
     } else if (evt.target === buttonEls.greenButton) {
-         sequences.playerSequence.push(0);
-         isGameOver();
-    } else if (evt.target === buttonEls.redButton) {
          sequences.playerSequence.push(1);
          isGameOver();
-    } else if (evt.target === buttonEls.yellowButton) {
+    } else if (evt.target === buttonEls.redButton) {
          sequences.playerSequence.push(2);
          isGameOver();
-    } else if (evt.target === buttonEls.blueButton) {
+    } else if (evt.target === buttonEls.yellowButton) {
          sequences.playerSequence.push(3);
+         isGameOver();
+    } else if (evt.target === buttonEls.blueButton) {
+         sequences.playerSequence.push(4);
          isGameOver();
     };
 
@@ -124,7 +133,7 @@ function isGameOver() {
     } else {
         ignoreClicks=true;
         gameOver = true;
-        textEls.message.innerText='GAME OVER';
+        textEls.message.innerText='!! GAME OVER !!';
     }
     if(counter==sequences.randomSequence.length) {
         generateSequence();
@@ -135,29 +144,21 @@ function isGameOver() {
 };
 
 function renderSeq() {
-
-    console.log(score)
+    let counter2 = 0
     turnLightsOff();
-    // let timer = setInterval
-    sequences.randomSequence.forEach(function (num) {
-        console.log(`should light: ${num}`)
-        if(num == boardLights.g) {
-            lightUp.green();
-            setTimeout(turnLightsOff, 500);
-        }
-        if(num == boardLights.r) {
-            lightUp.red();
-            setTimeout(turnLightsOff, 500)
-        }
-        if(num == boardLights.y) {
-            lightUp.yellow();
-            setTimeout(turnLightsOff, 500)
-        }
-        if(num == boardLights.b) {
-            lightUp.blue();
-            setTimeout(turnLightsOff, 500)
-        }
-    });
+        let lghtSeq = setInterval(function () {
+            let num = sequences.randomSequence[counter2];
+            console.log(`should light: ${num}`)
+            if(num == boardLights.g) lightUp.green();
+            if(num == boardLights.r) lightUp.red();
+            if(num == boardLights.b) lightUp.blue();
+            if(num == boardLights.y) lightUp.yellow();
+            if(counter2 == sequences.randomSequence.length) {
+                clearInterval(lghtSeq)
+                turnLightsOff();
+            }
+            counter2++
+        } ,1000);
 };
 /*************  sketch out function order *****************************/
 
