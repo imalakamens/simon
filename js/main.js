@@ -15,7 +15,6 @@ const boardLights = {
 
 const lightUp = {
     green: () => {
-        console.log('clicked green')
         turnLightsOff();
         buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
     },
@@ -35,7 +34,6 @@ const lightUp = {
 /*----- app's state (variables) -----*/
 let counter = 0;
 let gameOver, ignoreClicks, lightShow;
-let delay = 500;
 // at some point maybe add a score, = playerSequence.length
 
 /*----- cached element references -----*/
@@ -76,8 +74,9 @@ function generateSequence() {
     sequences.randomSequence.push(randomNum());
     sequences.playerSequence = [];
     counter = 0;
-    lightShow = undefined;
-    renderSeq();
+    // lightShow = undefined;
+    setInterval(renderSeq, 1000);
+    
 };
 function init() {
     gameOver = false;
@@ -95,13 +94,13 @@ function playGame() {
 
 }
 
-function clickSim() {
-    const evt = new MouseEvent('mousedown', {
-        view: window,
-        bubbles: false,
-        cancelable: true
-    });
-}
+// function clickSim() {
+//     const evt = new MouseEvent('mousedown', {
+//         view: window,
+//         bubbles: false,
+//         cancelable: true
+//     });
+// }
 
 function handleClick(evt) {
     
@@ -142,26 +141,27 @@ console.log(gameOver)
 };
 
 function renderSeq() {
-    delay = 500;
-    lightShow = sequences.randomSequence;
-    console.log(lightShow);
-    lightShow.forEach(function (num) {
+    delay = 1000;
+    sequences.randomSequence.forEach(function (num) {
         console.log('this num', num)
-        
         if(num == boardLights.g) {
             lightUp.green();
             delay*1.5
+            setTimeout(turnLightsOff, 600);
         }
         if(num == boardLights.r) {
             lightUp.red();
+            setTimeout(turnLightsOff, 600)
             delay*1.5
         }
         if(num == boardLights.y) {
             lightUp.yellow();
+            setTimeout(turnLightsOff, 600)
             delay*1.5
         }
         if(num == boardLights.b) {
             lightUp.blue();
+            setTimeout(turnLightsOff, 600)
             delay*1.5
         }
     
