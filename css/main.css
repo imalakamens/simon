@@ -7,6 +7,7 @@
 body {
     margin: 0;
     font-family: Helvetica;
+    background-color: black;
     
 }
 
@@ -29,7 +30,7 @@ body {
     display: grid;
     justify-content: center;
     grid-template-columns: auto auto;
-    background-color: black;
+    transform: rotate(-45deg);
 }
 
 #green_button { /* top left */ 

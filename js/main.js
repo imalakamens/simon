@@ -15,29 +15,27 @@ const boardLights = {
 
 const lightUp = {
     green: () => {
+        console.log('clicked green')
         turnLightsOff();
         buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
-        setTimeout(turnLightsOff, 300);
     },
     red: () => {
         turnLightsOff();
         buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)';
-        setTimeout(turnLightsOff, 300);
     },
     yellow: () => {
         turnLightsOff();
         buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)';
-        setTimeout(turnLightsOff, 300);
     },
     blue: () => {
         turnLightsOff();
         buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, 1)';
-        setTimeout(turnLightsOff, 300);
     }
 };
 /*----- app's state (variables) -----*/
 let counter = 0;
-let gameOver, ignoreClicks; 
+let gameOver, ignoreClicks, lightShow;
+let delay = 500;
 // at some point maybe add a score, = playerSequence.length
 
 /*----- cached element references -----*/
@@ -52,11 +50,21 @@ const buttonEls = {
 
 /*----- event listeners -----*/
 document.querySelector('.board').addEventListener('click', handleClick);
-document.getElementById('green_button').addEventListener('click', lightUp.green);
-document.getElementById('red_button').addEventListener('click', lightUp.red);
-document.getElementById('yellow_button').addEventListener('click', lightUp.yellow);
-document.getElementById('blue_button').addEventListener('click', lightUp.blue);
+document.getElementById('green_button').addEventListener('mousedown', lightUp.green);
+document.getElementById('green_button').addEventListener('mouseup', turnLightsOff);
+document.getElementById('red_button').addEventListener('mousedown', lightUp.red);
+document.getElementById('red_button').addEventListener('mouseup', turnLightsOff);
+document.getElementById('yellow_button').addEventListener('mousedown', lightUp.yellow);
+document.getElementById('yellow_button').addEventListener('mouseup', turnLightsOff);
+document.getElementById('blue_button').addEventListener('mousedown', lightUp.blue);
+document.getElementById('blue_button').addEventListener('mouseup', turnLightsOff);
+
+// document.getElementById('green_button').addEventListener('faux-click', lightUp.green);
+// document.getElementById('red_button').addEventListener('faux-click', lightUp.red);
+// document.getElementById('yellow_button').addEventListener('faux-click', lightUp.yellow);
+// document.getElementById('blue_button').addEventListener('faux-click', lightUp.blue);
 document.getElementById('start_button').addEventListener('click', init);
+
 /*----- functions -----*/
 
 function randomNum() {
@@ -68,6 +76,7 @@ function generateSequence() {
     sequences.randomSequence.push(randomNum());
     sequences.playerSequence = [];
     counter = 0;
+    lightShow = undefined;
     renderSeq();
 };
 function init() {
@@ -83,9 +92,19 @@ function playGame() {
     generateSequence();
     ignoreClicks = false;
     console.log(sequences)
+
+}
+
+function clickSim() {
+    const evt = new MouseEvent('mousedown', {
+        view: window,
+        bubbles: false,
+        cancelable: true
+    });
 }
 
 function handleClick(evt) {
+    
     if(gameOver || ignoreClicks) {
         return; 
     } else if (evt.target === buttonEls.greenButton) {
@@ -107,7 +126,7 @@ function handleClick(evt) {
 };
 
 function isGameOver() {
-    console.log('this is game over running')
+    console.log('game over checking...')
     if(sequences.playerSequence[counter] == sequences.randomSequence[counter]) {
         gameOver = false;
         counter ++
@@ -123,11 +142,30 @@ console.log(gameOver)
 };
 
 function renderSeq() {
-    let lightShow =sequences.randomSequence;
-    console.log('is this lightshow?',lightShow)
-//     for(let i=0; i<=lightShow.length; i++ ){
-//         setInterval(() => lightUp.green, 2000*i )
-//     }
+    delay = 500;
+    lightShow = sequences.randomSequence;
+    console.log(lightShow);
+    lightShow.forEach(function (num) {
+        console.log('this num', num)
+        
+        if(num == boardLights.g) {
+            lightUp.green();
+            delay*1.5
+        }
+        if(num == boardLights.r) {
+            lightUp.red();
+            delay*1.5
+        }
+        if(num == boardLights.y) {
+            lightUp.yellow();
+            delay*1.5
+        }
+        if(num == boardLights.b) {
+            lightUp.blue();
+            delay*1.5
+        }
+    
+    });
 };
 /* sketch out function order here */
 
