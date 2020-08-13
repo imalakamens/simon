@@ -76,4 +76,5 @@ body {
     display: grid;
     justify-items: center;
     background-color: #009473;
+    font-weight: bolder;
 }
