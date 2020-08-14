@@ -10,7 +10,7 @@ Set a personal high score in **_Simon_**, a memory skill game!
 * Recreate the given pattern by selecting the appropriately colored button, or buttons, in the same order.
 * Repeat those steps for as long as you can! If there's an incorrect input given, the game will restart from the beginning.
 
-[Click here to play the game!](https://www.google.com)
+[Click here to play the game!](https://imalakamens.github.io/simon/)
 
 >>>As mentioned above I would like to add audio feedback for each of the buttons, as well as improve and polish styling.
 
