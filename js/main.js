@@ -104,7 +104,6 @@ function init() {
 function playGame() {
     generateSequence();
     ignoreClicks = false;
-    console.log(sequences)
 }
 
 function handleClick(evt) {
