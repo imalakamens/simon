@@ -44,7 +44,7 @@ const lightUp = {
 };
 /*----- app's state (variables) -----*/
 let counter = 0;
-let gameOver, ignoreClicks, lightShow, score;
+let gameOver, ignoreClicks, score;
 
 /*----- cached element references -----*/
 const buttonEls = {
@@ -131,7 +131,6 @@ function isGameOver() {
         gameOver = false;
         counter ++
     } else {
-        ignoreClicks=true;
         gameOver = true;
         textEls.message.innerText='!! GAME OVER !!';
     }
@@ -160,7 +159,6 @@ function renderSeq() {
             counter2++
         } ,1000);
 };
-/*************  sketch out function order *****************************/
 
 function turnLightsOff(){
     buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 0.3)';
@@ -168,4 +166,5 @@ function turnLightsOff(){
     buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, .5)';
     buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, .5)';
 };
+/*************  sketch out function order *****************************/
 
