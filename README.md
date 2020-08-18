@@ -7,16 +7,13 @@ Here I've created a version of the _**Simon**_, a game of memory skill, played b
 * Repeat those steps for as long as you can! If there's an incorrect input given, the game will restart from the beginning.
 
 ## Technologies Used
----
 Javascript, CSS & HTML
 
 ## Screenshot(s)
----
 ![alt text][game]
 [Click here to play the game!](https://imalakamens.github.io/simon/)
 
 ## Next Steps
----
 * I would like to add audio feedback for each of the buttons, as well as improve and polish styling. 
 * Improve mobile compatibility(buttons do not light up when touched on a mobile device)
 
