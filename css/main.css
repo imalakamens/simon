@@ -30,42 +30,44 @@ body {
     display: grid;
     justify-content: center;
     grid-template-columns: auto auto;
-    transform: rotate(-45deg);
+    padding: 5em;
+    /* transform: rotate(-45deg); */
+}
+
+.button {
+    width: 200px;
+    height: 200px;
 }
 
 #green_button { /* top left */ 
-    width: 0;
-    height: 0;
-    border-bottom:200px solid rgba(0, 183, 0, 0.3);
-    border-left: 200px solid transparent;
+    border-top-left-radius: 250px;
+    background-color: rgba(0, 183, 0, 0.5);
+    /* border-bottom:200px solid rgba(0, 183, 0, 0.3); */
+    /* border-left: 200px solid transparent; */
 }
 
 #red_button { /* top right */
-    width: 0;
-    height: 0;
-    border-bottom: 200px solid rgba(226, 0, 0, 0.4);
-    border-right: 200px solid transparent;
+    border-top-right-radius: 250px;
+    background-color: rgba(226, 0, 0, 0.5);
 }
 
 #yellow_button { /* bottom left */
-    width: 0;
-    height: 0;
-    border-top: 200px solid rgba(255, 240, 157, 0.5);
-    border-left: 200px solid transparent;
+    border-bottom-left-radius: 250px;
+    background-color: rgba(255, 240, 157, 0.5);
 }
 
 #blue_button { /* bottom right */ 
-    width: 0;
-    height: 0;
-    border-top: 200px solid rgba(80, 80, 255, 0.5);
-    border-right: 200px solid transparent;
+    border-bottom-right-radius: 250px;
+    background-color: rgba(80, 80, 255, 0.5);
 }
 
 #message {
-    background-color: black;
+    background-color: grey;
     text-align: center;
     display: flex;
     justify-content: center;
+    padding: auto;
+    margin: auto;
 }
 #start_button {
     color: black;

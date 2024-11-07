@@ -14,37 +14,42 @@ const boardLights = {
 
 const lightUp = {
     green: () => {
-        turnLightsOff();
-        buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 1)';
+        buttonEls.greenButton.style.backgroundColor='rgba(0, 183, 0, 1)';
         setTimeout(() => {
-            turnLightsOff();
+            buttonEls.greenButton.style.backgroundColor='rgba(0, 183, 0, 0.5)';
         }, 500);
+        let audio = document.getElementById('green_audio');
+        audio.play();
     },
     red: () => {
-        turnLightsOff();
-        buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, 1)';
+        buttonEls.redButton.style.backgroundColor='rgba(226, 0, 0, 1)';
         setTimeout(() => {
-            turnLightsOff();
+            buttonEls.redButton.style.backgroundColor='rgba(226, 0, 0, 0.5)';
         }, 500);
+        let audio = document.getElementById('red_audio');
+        audio.play();
     },
     yellow: () => {
-        turnLightsOff();
-        buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, 1)';
+        buttonEls.yellowButton.style.backgroundColor='rgba(255, 240, 157, 1)';
         setTimeout(() => {
-            turnLightsOff();
+            buttonEls.yellowButton.style.backgroundColor='rgba(255, 240, 157, 0.5)';
         }, 500);
+        let audio = document.getElementById('yellow_audio');
+        audio.play();
     },
     blue: () => {
-        turnLightsOff();
-        buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, 1)';
+        buttonEls.blueButton.style.backgroundColor='rgba(80, 80, 255, 1)';
         setTimeout(() => {
-            turnLightsOff();
+            buttonEls.blueButton.style.backgroundColor='rgba(80, 80, 255, 0.5)';
         }, 500);
+        let audio = document.getElementById('blue_audio');
+        audio.play();
     }
 };
 /*----- app's state (variables) -----*/
 let counter = 0;
-let gameOver, ignoreClicks, score;
+let ignoreClicks = true;
+let gameOver, score;
 
 /*----- cached element references -----*/
 const buttonEls = {
@@ -60,15 +65,35 @@ const textEls = {
 }
 
 /*----- event listeners -----*/
-document.querySelector('.board').addEventListener('click', handleClick);
-document.getElementById('green_button').addEventListener('mousedown', lightUp.green);
-document.getElementById('green_button').addEventListener('mouseup', turnLightsOff);
-document.getElementById('red_button').addEventListener('mousedown', lightUp.red);
-document.getElementById('red_button').addEventListener('mouseup', turnLightsOff);
-document.getElementById('yellow_button').addEventListener('mousedown', lightUp.yellow);
-document.getElementById('yellow_button').addEventListener('mouseup', turnLightsOff);
-document.getElementById('blue_button').addEventListener('mousedown', lightUp.blue);
-document.getElementById('blue_button').addEventListener('mouseup', turnLightsOff);
+document.querySelector('.board').addEventListener('click', (e) => {
+    if (ignoreClicks === false) {
+        handleClick(e);
+    }
+});
+document.getElementById('green_button').addEventListener('mousedown', () => {
+    if (ignoreClicks === false){
+        lightUp.green();
+    }
+});
+// document.getElementById('green_button').addEventListener('mouseup', turnLightsOff);
+document.getElementById('red_button').addEventListener('mousedown', () => {
+    if (ignoreClicks === false){
+        lightUp.red();
+    }
+});
+// document.getElementById('red_button').addEventListener('mouseup', turnLightsOff);
+document.getElementById('yellow_button').addEventListener('mousedown', () => {
+    if (ignoreClicks === false){
+        lightUp.yellow();
+    }
+});
+// document.getElementById('yellow_button').addEventListener('mouseup', turnLightsOff);
+document.getElementById('blue_button').addEventListener('mousedown', () => {
+    if (ignoreClicks === false){
+        lightUp.blue();
+    }
+});
+// document.getElementById('blue_button').addEventListener('mouseup', turnLightsOff);
 document.getElementById('start_button').addEventListener('click', init);
 
 /*----- functions -----*/
@@ -81,12 +106,11 @@ function randomNum() {
     return Math.floor(Math.random()* 4) + 1;
 };
 
-function generateSequence() {
-    ignoreClicks = false;
+async function generateSequence() {
     sequences.randomSequence.push(randomNum());
     sequences.playerSequence = [];
     counter = 0;
-    renderSeq();
+    await renderSeq();
 };
 
 function init() {
@@ -94,35 +118,34 @@ function init() {
     textEls.score.innerText = '';
     textEls.message.innerText = '';
     gameOver = false;
-    ignoreClicks = true;
     sequences.playerSequence = [];
     sequences.randomSequence = [];
     playGame();
 
 };
 
-function playGame() {
-    generateSequence();
-    ignoreClicks = false;
+async function playGame() {
+    await generateSequence();
+    // ignoreClicks = false;
+
 }
 
 function handleClick(evt) {
-    if(gameOver || ignoreClicks) {
+    if( ignoreClicks) {
         return; 
-    } else if (evt.target === buttonEls.greenButton) {
+    } else if (evt.target === buttonEls.greenButton && ignoreClicks == false) {
          sequences.playerSequence.push(1);
          isGameOver();
-    } else if (evt.target === buttonEls.redButton) {
+    } else if (evt.target === buttonEls.redButton && ignoreClicks == false) {
          sequences.playerSequence.push(2);
          isGameOver();
-    } else if (evt.target === buttonEls.yellowButton) {
+    } else if (evt.target === buttonEls.yellowButton && ignoreClicks == false) {
          sequences.playerSequence.push(3);
          isGameOver();
-    } else if (evt.target === buttonEls.blueButton) {
+    } else if (evt.target === buttonEls.blueButton && ignoreClicks == false) {
          sequences.playerSequence.push(4);
          isGameOver();
     };
-
 };
 
 function isGameOver() {
@@ -141,10 +164,10 @@ function isGameOver() {
    return gameOver;
 };
 
-function renderSeq() {
+async function renderSeq() {
     let counter2 = 0
-    turnLightsOff();
-        let lghtSeq = setInterval(function () {
+    ignoreClicks = true;
+    let lghtSeq = setInterval( () => {
             let num = sequences.randomSequence[counter2];
             console.log(`should light: ${num}`)
             if(num == boardLights.g) lightUp.green();
@@ -152,18 +175,19 @@ function renderSeq() {
             if(num == boardLights.b) lightUp.blue();
             if(num == boardLights.y) lightUp.yellow();
             if(counter2 == sequences.randomSequence.length) {
+                ignoreClicks = false;
                 clearInterval(lghtSeq)
-                turnLightsOff();
             }
             counter2++
         } ,1000);
+    
 };
 
 function turnLightsOff(){
-    buttonEls.greenButton.style.borderBottomColor='rgba(0, 183, 0, 0.3)';
-    buttonEls.redButton.style.borderBottomColor='rgba(226, 0, 0, .4)';
-    buttonEls.yellowButton.style.borderTopColor='rgba(255, 240, 157, .5)';
-    buttonEls.blueButton.style.borderTopColor='rgba(80, 80, 255, .5)';
+    buttonEls.greenButton.style.backgroundColor='rgba(0, 183, 0, 0.3)';
+    buttonEls.redButton.style.backgroundColor='rgba(226, 0, 0, .4)';
+    buttonEls.yellowButton.style.backgroundColor='rgba(255, 240, 157, .5)';
+    buttonEls.blueButton.style.backgroundColor='rgba(80, 80, 255, .5)';
 };
 /*************  sketch out function order *****************************/
 
