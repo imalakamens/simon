@@ -41,14 +41,14 @@ body {
 
 #green_button { /* top left */ 
     border-top-left-radius: 250px;
-    background-color: rgba(0, 183, 0, 0.3);
+    background-color: rgba(0, 183, 0, 0.5);
     /* border-bottom:200px solid rgba(0, 183, 0, 0.3); */
     /* border-left: 200px solid transparent; */
 }
 
 #red_button { /* top right */
     border-top-right-radius: 250px;
-    background-color: rgba(226, 0, 0, 0.4);
+    background-color: rgba(226, 0, 0, 0.5);
 }
 
 #yellow_button { /* bottom left */
